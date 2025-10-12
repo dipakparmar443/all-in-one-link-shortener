@@ -19,7 +19,7 @@
 
 **Tested up to:** 6.8
 
-**Stable tag:** 1.0
+**Stable tag:** 1.0.3
 
 **Requires PHP:** 7.4
 
@@ -27,18 +27,18 @@
 
 **License URI:** [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html)
 
-Create shortlinks for WordPress posts/pages with **Bitly, TinyURL, Rebrandly**, or **native permalinks**.
+Create shortlinks for WordPress posts/pages with **Bitly, TinyURL, Rebrandly, cutt.ly, is.gd, t.ly**, or **native permalinks**.
 
 ---
 
 ## 📚 Description
 
 **All In One Link Shortener** allows easy generation of shortlinks for your WordPress content.
-Choose from multiple providers: **Bitly, TinyURL, Rebrandly**, or use **WordPress permalinks**.
+Choose from multiple providers: **Bitly, TinyURL, Rebrandly, cutt.ly, is.gd, t.ly**, or use **WordPress permalinks**.
 
 ### 🔑 Compliance with WordPress.org Guidelines
 
-* **External Services:** Only the permalink URL of a post/page is sent to third-party APIs (Bitly, TinyURL, Rebrandly). No personal data, titles, or analytics are transmitted.
+* **External Services:** Only the permalink URL of a post/page is sent to third-party APIs (Bitly, TinyURL, Rebrandly, cutt.ly, is.gd, t.ly). No personal data, titles, or analytics are transmitted.
 * **Privacy:** The plugin does **not** track users, collect analytics, or include hidden data collection. Shortlinks are generated only when publishing or updating a post.
 
 ### ✨ Features
@@ -76,6 +76,29 @@ Choose from multiple providers: **Bitly, TinyURL, Rebrandly**, or use **WordPres
 3. Generate a new API key.
 4. Paste it into plugin settings.
 
+### Cutt.ly (API Key)
+1. Sign in at [Cutt.ly](https://cutt.ly/).
+2. In the left sidebar, go to API → [API Key](https://cutt.ly/edit).
+3. Your API Key will be visible on the right side under your account information.
+4. If you don’t have one, click Generate API Key to create a new key.
+5. Copy the generated key and store it securely.
+6. Paste it into your plugin settings → Save Changes.
+
+### is.gd (No API Key Required)
+1. Visit [is.gd](https://is.gd/developers.php)
+2. You don’t need to create an account or API key — is.gd’s shortening service is open for public use.
+3. To shorten a link using the API, simply use the following URL format: `https://is.gd/create.php?format=json&url=YOUR_LONG_URL`.
+4. Replace YOUR_LONG_URL with the actual link you want to shorten.
+5. You can test this directly in your browser or use it programmatically via your plugin.
+6. For full API documentation, visit [is.gd API Reference](https://is.gd/developers.php).
+
+### T.LY (API Key Required)
+1. Visit [T.LY](https://t.ly/) and create a free account.
+2. Generate your API key from your [T.LY Dashboard](https://t.ly/links).
+3. To shorten a link using the API, send a POST request to `https://api.t.ly/api/v1/link/shorten` with your long URL and API token.
+4. The API will return a JSON response containing short_url. Use this value as the shortened link.
+5. For full API documentation, visit [T.LY API Docs](https://t.ly/docs).
+
 ### Add Token to Plugin
 
 1. Go to **WordPress Admin → All In One Link Shortener**.
@@ -112,9 +135,12 @@ Choose from multiple providers: **Bitly, TinyURL, Rebrandly**, or use **WordPres
 * Bitly → [API Docs](https://dev.bitly.com/)
 * TinyURL → [API Docs](https://tinyurl.com/app/dev)
 * Rebrandly → [API Docs](https://developers.rebrandly.com/)
+* Cutt.ly → [API Docs](https://cutt.ly/api-documentation/regular-api)
+* is.gd → [API Docs](https://is.gd/developers.php)
+* T.LY → [API Docs](https://t.ly/docs)
 
 **Do I need an API token?**
-Yes, for Bitly, TinyURL, and Rebrandly. WordPress permalinks don’t require one.
+Yes, Bitly, TinyURL, Rebrandly, cutt.ly, t.ly are supported. API keys are required. WordPress permalinks and is.gd do not require keys.
 
 **What data is sent?**
 Only the permalink URL. No personal data is shared.
@@ -130,9 +156,15 @@ Yes, select **Permalink** as the provider.
 ## 🖼️ Screenshots
 
 1. Copy shortlink button in the post editor.
+![Plugin Screenshot](assets/screenshot-1.png)
+![Plugin Screenshot](assets/screenshot-2.png)
 2. Shortlink column in post list.
+![Plugin Screenshot](assets/screenshot-3.png)
+![Plugin Screenshot](assets/screenshot-4.png)
 3. Settings page with provider + token options.
+![Plugin Screenshot](assets/screenshot-5.png)
 4. Shortcode display in frontend.
+![Plugin Screenshot](assets/screenshot-6.png)
 
 ---
 
@@ -163,9 +195,46 @@ Yes, select **Permalink** as the provider.
    * Terms: [Rebrandly TOS](https://www.rebrandly.com/terms)
    * Privacy: [Rebrandly Privacy](https://www.rebrandly.com/privacy)
 
+4. **cutt.ly**  
+   - API URL: [https://cutt.ly/api-documentation/regular-api](https://cutt.ly/api-documentation/regular-api)
+   - Purpose: Generate short links using cutt.ly.  
+   - Data Sent: Original URL + API key.  
+   - Documentation: [https://cutt.ly/api-documentation/regular-api](https://cutt.ly/api-documentation/regular-api)
+   - Terms of Service: [cutt.ly TOS](https://cutt.ly/terms)
+   - Privacy Policy: [cutt.ly Privacy](https://cutt.ly/privacy)
+   - Contact us : [cutt.ly Contact us](https://cutt.ly/contact)
+
+5. **is.gd API Information (No API Key Required)**
+	- API URL: [https://is.gd/create.php?format=json&url=YOUR_LONG_URL](https://is.gd/create.php?format=json&url=YOUR_LONG_URL)  
+	- Purpose: Generate short links without requiring an API key.  
+	- Data Sent: Original long URL (no authentication required).  
+	- Documentation: [https://is.gd/developers.php](https://is.gd/developers.php)  
+	- Terms of Service: [https://is.gd/terms.php](https://is.gd/terms.php)  
+	- Privacy Policy: [https://is.gd/privacy.php](https://is.gd/privacy.php)  
+	- Contact Us: [https://is.gd/contact.php](https://is.gd/contact.php)
+
+6. **T.LY API Information (API Key Required)**
+	- API URL: [https://t.ly/docs)  
+	- Purpose: Generate short links without requiring an API key.  
+	- Data Sent: Original long URL (no authentication required).  
+	- Documentation: [https://t.ly/docs](https://t.ly/docs)  
+	- Terms of Service: [https://t.ly/terms](https://t.ly/terms)  
+	- Privacy Policy: [https://t.ly/privacy](https://t.ly/privacy)  
+	- Contact Us: [https://t.ly/contact](https://t.ly/contact)
+
 ---
 
 ## 📌 Changelog
+
+### 1.0.3
+* T.LY shortlink provider added.
+* provider's get_key change default `aiols_` prefix added.
+
+### 1.0.2
+* is.gd shortlink provider added.
+
+### 1.0.1
+* cutt.ly shortlink provider added.
 
 ### 1.0
 
